@@ -1,1 +1,10 @@
 */build/
+*.pdb
+*.tlog
+*.log
+*.idb
+*.opendb
+*.db
+*.obj
+*.ilk
+MyownAnswer/tutorial1/.vs/Tutorial1/v14/.suo
