@@ -8,3 +8,8 @@
 *.obj
 *.ilk
 MyownAnswer/tutorial1/.vs/Tutorial1/v14/.suo
+*.sln
+*.exe
+*.vcxproj
+*.filters
+MyownAnswer/tutorial02/.vs/Tutorial2/v14/.suo
