@@ -19,3 +19,11 @@ MyownAnswer/tutorial04/CMakeLists.txt
 MyownAnswer/tutorial04/tutorial04.md
 MyownAnswer/tutorial04/.vs/tutorial04/v14/.suo
 MyownAnswer/tutorial03/.vs/tutorial03/v14/.suo
+MyownAnswer/tutorial05/.vs/tutorial05/v14/.suo
+MyownAnswer/tutorial05/CMakeLists.txt
+MyownAnswer/tutorial05/images/makefile
+MyownAnswer/tutorial05/images/parse_array01.dot
+MyownAnswer/tutorial05/images/parse_array01.png
+*.dot
+*.png
+*.md
