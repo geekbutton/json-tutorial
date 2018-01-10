@@ -347,7 +347,8 @@ int lept_parse(lept_value* v, const char* json) {
 }
 
 static void lept_stringify_string(lept_context* c, const char* s, size_t len) {
-	PUTC(c,'\"');
+	
+/*	PUTC(c,'\"');
 	for (size_t i = 0; i < len; ++i) {
 		switch (s[i]) {
 		case '\"':	PUTC(c, '\\'); PUTC(c, '\"'); break;
@@ -369,7 +370,35 @@ static void lept_stringify_string(lept_context* c, const char* s, size_t len) {
 			break;
 		}
 	}
-	PUTC(c,'\"');
+	PUTC(c,'\"');*/
+
+	char* p, *head;
+	p = head = lept_context_push(c,len*6+2);
+	
+	*p++ = '"';
+	for (size_t i = 0; i < len; ++i) {
+		switch (s[i]) {
+		case '\"':	*p++ = '\\'; *p++ = '\"'; break;
+		case '\\':	*p++ = '\\'; *p++ = '\\'; break;
+		case '\/':	*p++ = '\/'; break;
+		case '\b':	*p++ = '\\'; *p++ = 'b'; break;
+		case '\f':	*p++ = '\\'; *p++ = 'f'; break;
+		case '\n':	*p++ = '\\'; *p++ = 'n'; break;
+		case '\r':	*p++ = '\\'; *p++ = 'r'; break;
+		case '\t':	*p++ = '\\'; *p++ = 't'; break;
+		default:
+			if (s[i] < 0x20) {
+				*p++ = '\\'; *p++ = 'u'; *p++ = '0'; *p++ = '0'; 
+				*p++ = s[i] / 16 + '0';
+				*p++ = s[i] % 16 + '0';
+			}
+			else
+				*p++ = s[i];
+			break;
+		}
+	}
+	*p++ = '\"';
+	c->top -= len * 6 + 2 - (p - head);
 }
 
 static void lept_stringify_value(lept_context* c, const lept_value* v) {
